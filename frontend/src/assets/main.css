@@ -1,0 +1,39 @@
+body {
+  font-family: sans-serif;
+  background: #f5f5f5;
+  text-align: center;
+  padding: 2rem;
+}
+
+.container {
+  max-width: 500px;
+  margin: auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+input, button, select {
+  display: block;
+  box-sizing: border-box;
+  padding: 0.75rem;
+  margin: 0.75rem 0;
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+#room-list {
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.room {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  background: #f9f9f9;
+  cursor: pointer;
+}
+
