@@ -18,7 +18,7 @@ const routes = [
     path: '/game/:roomId',
     name: 'GameRoom',
     component: GameRoom,
-    props: true // ✅ GameRoom에서 roomId를 props로 받을 수 있게 함
+    props: true
   }
 ]
 

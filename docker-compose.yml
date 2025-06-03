@@ -1,28 +1,46 @@
 version: '3'
 
 services:
-  backend:
-    build: ./backend
-    ports:
-      - "5000:5000"
-    env_file:
-      - .env
-    volumes:
-      - ./backend:/app
-    depends_on:
-      - db
-
-  db:
+  mysql:
     image: mysql:8.0
-    container_name: mysql-server
-    restart: always
+    container_name: halligalli-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=cloudComputing331
+      - MYSQL_DATABASE=halligalli
+      - MYSQL_USER=halligalli
+      - MYSQL_PASSWORD=halligalli
     volumes:
       - mysql_data:/var/lib/mysql
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - "3306:3306"
+
+  halligalli-backend:
+    build: ./backend
+    image: halligalli-backend:5.0.0-compose
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_NAME=halligalli
+      - DB_USER=halligalli
+      - DB_PASSWORD=halligalli
+      - SECRET_KEY=cloudComputingIsSoBeneficialAndFun
+    depends_on:
+      - mysql
+    command: sh -c "sleep 10 && python app.py"
+    ports:
+      - "5000:5000"
+
+  halligalli-frontend:
+    build: ./frontend
+    image: halligalli-frontend:5.0.0-compose
+    environment:
+      - BACKEND_HOST=halligalli-backend
+      - BACKEND_PORT=5000
+    depends_on:
+      - halligalli-backend
+    ports:
+      - "80:80"
 
 volumes:
   mysql_data:

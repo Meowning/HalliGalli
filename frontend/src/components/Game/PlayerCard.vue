@@ -1,12 +1,13 @@
 <template>
-  <div :class="['player-card', { 'current-turn': isCurrentTurn }]">
-    <div class="fruit-grid" :style="gridStyle">
+  <div class="player-card" :class="{ 'current-turn': isCurrentTurn }">
+    <div class="fruit-grid">
       <div
         v-for="(fruit, idx) in fruitList"
         :key="idx"
         class="fruit-emoji"
+        :style="getFruitStyle(idx)"
       >
-        {{ fruit }}
+        {{ card.fruit }}
       </div>
     </div>
   </div>
@@ -21,20 +22,51 @@ export default {
   },
   computed: {
     fruitList() {
-      const count = Math.min(this.card.count, 9); // 최대 9개까지 표시
+      const count = Math.min(this.card.count, 5);
       return Array(count).fill(this.card.fruit);
     },
-    gridStyle() {
-      return {
-        display: "grid",
-        "grid-template-columns": "repeat(3, 1fr)",
-        "grid-template-rows": "repeat(3, 1fr)",
-        "justify-items": "center",
-        "align-items": "center",
-        gap: "6px",
-        width: "100%",
-        height: "100px",
-      };
+  },
+  methods: {
+    getFruitStyle(index) {
+      if (this.card.count === 1) {
+        return { left: "50%", top: "50%" };
+      }
+      if (this.card.count === 2) {
+        const twoPos = [
+          { left: "30%", top: "30%" },
+          { left: "70%", top: "70%" }
+        ];
+        return twoPos[index];
+      }
+      if (this.card.count === 3) {
+        const threePos = [
+          { left: "30%", top: "30%" },
+          { left: "50%", top: "50%" },
+          { left: "70%", top: "70%" }
+        ];
+        return threePos[index];
+      }
+      if (this.card.count === 4) {
+        const fourPos = [
+          { left: "25%", top: "25%" },
+          { left: "75%", top: "25%" },
+          { left: "25%", top: "75%" },
+          { left: "75%", top: "75%" }
+        ];
+        return fourPos[index];
+      }
+      if (this.card.count >= 5) {
+        const fivePos = [
+          { left: "25%", top: "25%" },
+          { left: "75%", top: "25%" },
+          { left: "50%", top: "50%" },
+          { left: "25%", top: "75%" },
+          { left: "75%", top: "75%" }
+        ];
+        return fivePos[index];
+      }
+
+      return { left: "50%", top: "50%" };
     },
   },
 };
@@ -42,28 +74,33 @@ export default {
 
 <style scoped>
 .player-card {
-  border: 2px solid transparent;
-  border-radius: 8px;
-  padding: 10px;
+  position: relative;
+  width: 70px;
+  height: 140px;
   background: white;
-  box-shadow: 0 0 5px #aaa;
-  transition: border-color 0.3s ease;
-  width: 100px;
-  height: 130px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  padding: 6px;
   user-select: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .current-turn {
-  border-color: #36c;
-  box-shadow: 0 0 15px #369;
+  border: 2px solid #3b82f6;
+  box-shadow: 0 0 12px #3b82f6;
+}
+
+.fruit-grid {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .fruit-emoji {
-  font-size: 1.7rem;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
   line-height: 1;
+  user-select: none;
 }
 </style>
