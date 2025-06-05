@@ -2,10 +2,10 @@
 
 
 
-# 🔔 할리갈리 온라인 🍓
+# 🔔 할리갈리 온라인
 
-## 🚀 프로젝트 개요
-### 🐋 Docker Compose를 활용한 할리갈리 게임
+## 프로젝트 개요
+### Docker Compose를 활용한 할리갈리 게임
 - 웹소켓을 활용한 실시간 웹사이트 게임으로, 멀티플레이 가능
 
 -  브라우저 세션을 통해 사용자 구별, 로그인 없이 닉네임만 입력해도 게임에 참여 가능
@@ -18,7 +18,7 @@
 
 <br/>
 
-## 🖥️ 화면 구성
+## 화면 구성
 |초기 화면|
 |:---:|
 |<img src="https://github.com/user-attachments/assets/fa46020d-1e72-42a7-b50d-d84ead0ccf2e" width="450"/>|
@@ -36,7 +36,7 @@
 
 <br />
 
-## ⚙️ 기술 스택
+## 기술 스택
 ### Backend
 <div>
   <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white"> 
@@ -60,7 +60,7 @@
 
 <br />
 
-## 🤖 프로젝트 요구사항 (윈도우 기준)
+## 프로젝트 요구사항 (윈도우 기준)
 - git 버전 2.40.0 이상
 - Docker 버전 28.1.1 이상
 - Docker Compose v2.35.1-desktop.1 이상
@@ -68,7 +68,7 @@
 
 <br />
 
-### ❓ 호스트 컴퓨터에서 요구하는 포트를 이미 사용 중이라면?
+### 호스트 컴퓨터에서 요구하는 포트를 이미 사용 중인 경우우
 docker-compose.yml의 다음 부분을 변경
 ```yml
 
@@ -123,7 +123,7 @@ volumes:
 
 <br />
 
-## 📌 설치 및 실행 방법 (bash 기준)
+## 설치 및 실행 방법 (bash 기준)
 1. **리포지토리 클론 후 루트 디렉토리 이동**
 
    ```bash
